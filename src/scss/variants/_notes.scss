@@ -1,0 +1,99 @@
+@use "../themes/mixins";
+
+@each $name,
+$variant in mixins.$notes-colors {
+    .note-color--#{$name} {
+        --local-note-color: var(--color-note-#{$name});
+        background-color: var(--local-note-color) !important;
+    }
+}
+
+@each $name,
+$variant in mixins.$notes-colors {
+    .note-color--presistent-dark-#{$name} {
+        --local-note-color: var(--color-note-presistent-dark-#{$name});
+        background-color: var(--local-note-color) !important;
+    }
+
+    .note-color--presistent-light-#{$name} {
+        --local-note-color: var(--color-note-presistent-light-#{$name});
+        background-color: var(--local-note-color) !important;
+    }
+}
+
+.note-card {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-note-bg);
+    color: var(--color-note-txt);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(0.95);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    &__title {
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+    }
+
+    &__snippet {
+        font-size: 0.95rem;
+        opacity: 0.85;
+        line-height: 1.3;
+        font-family: var(--font-stack-primary);
+    }
+}
+
+.note-textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: var(--font-stack-primary);
+    line-height: 1.6;
+    color: var(--color-note-textarea-txt);
+    background-color: transparent;
+    box-shadow: none;
+    overflow-y: auto;
+    caret-color: var(--color-note-textarea-caret);
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+    &:focus {
+        background-color: transparent;
+        outline: none;
+    }
+
+    &::placeholder {
+        color: var(--color-note-textarea-placeholder);
+        font-style: italic;
+    }
+
+    border-radius: 0.5rem;
+    min-height: 250px;
+}
+
+.button--note-modal {
+    border: none;
+    color: var(--color-note-mdl-txt) !important;
+    background: var(--color-note-mdl-bg) !important;
+    border-radius: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: var(--color-note-mdl-bg-hover) !important;
+    }
+}

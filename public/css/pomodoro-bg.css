@@ -1,0 +1,497 @@
+@property --x-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --y-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --c-0 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+@property --s-start-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --s-end-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --x-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --y-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --c-1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+@property --s-start-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --s-end-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --x-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --y-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --c-2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+@property --s-start-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --s-end-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --x-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --y-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --c-3 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+@property --s-start-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --s-end-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@keyframes hero-gradient-animation {
+  0% {
+    --y-0: 80%;
+    --x-0: 85%;
+    --y-1: 24%;
+    --x-1: 60%;
+    --y-2: 82%;
+    --x-2: 13%;
+    --y-3: 7%;
+    --x-3: 24%;
+  }
+  100% {
+    --y-0: 94%;
+    --x-0: 31%;
+    --y-1: 25%;
+    --x-1: 2%;
+    --y-2: 20%;
+    --x-2: 98%;
+    --y-3: 92%;
+    --x-3: 95%;
+  }
+}
+.pomodoro-gradient--black {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: hsl(267, 1%, 12%);
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 9%;
+  --s-end-0: 55%;
+  --c-1: hsl(336, 2%, 22%);
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: hsla(54, 0%, 0%, 0.49);
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: hsl(299, 4%, 36%);
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--purple-peach {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #5F0A87;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #A4508B;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 70%;
+  --c-2: #5F0A87;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #A4508B;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--crimson-wine {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #66023c;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #cd1c18;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 70%;
+  --c-2: #66023c;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #cd1c18;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--teal-glow {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #008080;
+  --x-0: 75%;
+  --y-0: 60%;
+  --s-start-0: 10%;
+  --s-end-0: 60%;
+  --c-1: #009990;
+  --x-1: 50%;
+  --y-1: 30%;
+  --s-start-1: 10%;
+  --s-end-1: 70%;
+  --c-2: #008080;
+  --x-2: 20%;
+  --y-2: 70%;
+  --s-start-2: 5%;
+  --s-end-2: 50%;
+  --c-3: #009990;
+  --x-3: 30%;
+  --y-3: 10%;
+  --s-start-3: 10%;
+  --s-end-3: 60%;
+}
+
+.pomodoro-gradient--aqua-sky {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #0054b4;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #40e0d0;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: #0054b4;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #40e0d0;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--indigo-violet {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #667eea;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #764ba2;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: #667eea;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #764ba2;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--ocean-mist {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #13547a;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #80d0c7;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: #13547a;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #80d0c7;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--flamingo-rose {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #ff0844;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #ffb199;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: #ff0844;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #ffb199;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--gray-black {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #434343;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #000000;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: #434343;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #000000;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--twilight-glow {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #0c3483;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #a2b6df;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: #6b8cce;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #a2b6df;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient--peach-sand {
+  background-color: #000;
+  background-blend-mode: normal, normal, normal, normal;
+  animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  --c-0: #c79081;
+  --x-0: 85%;
+  --y-0: 80%;
+  --s-start-0: 10%;
+  --s-end-0: 55%;
+  --c-1: #dfa579;
+  --x-1: 60%;
+  --y-1: 24%;
+  --s-start-1: 5%;
+  --s-end-1: 72%;
+  --c-2: #c79081;
+  --x-2: 13%;
+  --y-2: 82%;
+  --s-start-2: 5%;
+  --s-end-2: 52%;
+  --c-3: #dfa579;
+  --x-3: 24%;
+  --y-3: 7%;
+  --s-start-3: 13%;
+  --s-end-3: 68%;
+}
+
+.pomodoro-gradient-sample--black {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, hsl(267, 1%, 12%) 0%, hsl(336, 2%, 22%) 33%, hsla(54, 0%, 0%, 0.49) 66%, hsl(299, 4%, 36%) 100%);
+}
+
+.pomodoro-gradient-sample--purple-peach {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #5F0A87 0%, #A4508B 33%, #5F0A87 66%, #A4508B 100%);
+}
+
+.pomodoro-gradient-sample--crimson-wine {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #66023c 0%, #cd1c18 33%, #66023c 66%, #cd1c18 100%);
+}
+
+.pomodoro-gradient-sample--teal-glow {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #008080 0%, #009990 33%, #008080 66%, #009990 100%);
+}
+
+.pomodoro-gradient-sample--aqua-sky {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #0054b4 0%, #40e0d0 33%, #0054b4 66%, #40e0d0 100%);
+}
+
+.pomodoro-gradient-sample--indigo-violet {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 33%, #667eea 66%, #764ba2 100%);
+}
+
+.pomodoro-gradient-sample--ocean-mist {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #13547a 0%, #80d0c7 33%, #13547a 66%, #80d0c7 100%);
+}
+
+.pomodoro-gradient-sample--flamingo-rose {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #ff0844 0%, #ffb199 33%, #ff0844 66%, #ffb199 100%);
+}
+
+.pomodoro-gradient-sample--gray-black {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #434343 0%, #000000 33%, #434343 66%, #000000 100%);
+}
+
+.pomodoro-gradient-sample--twilight-glow {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #0c3483 0%, #a2b6df 33%, #6b8cce 66%, #a2b6df 100%);
+}
+
+.pomodoro-gradient-sample--peach-sand {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #c79081 0%, #dfa579 33%, #c79081 66%, #dfa579 100%);
+}
+
+/*# sourceMappingURL=pomodoro-bg.css.map */

@@ -1,0 +1,51 @@
+.error {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+
+    &__container {
+        max-width: 520px;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    &__header {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    &__code {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 8rem;
+        font-weight: 200;
+        color: var(--color-text-primary);
+        margin: 0;
+        text-transform: uppercase;
+
+        @media (max-width: 767px) {
+            font-size: 5rem;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 3.5rem;
+        }
+    }
+
+    &__message {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--color-text-primary);
+        padding: 0.5rem 1rem;
+        display: inline-block;
+        text-transform: uppercase;
+
+        @media (max-width: 480px) {
+            font-size: 1rem;
+        }
+    }
+}

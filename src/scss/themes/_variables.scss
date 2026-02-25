@@ -1,0 +1,77 @@
+@use 'mixins';
+
+:root {
+    // === HSL Component ===
+    @include mixins.define-hsl-components(mixins.$color-brand-palettes);
+    @include mixins.define-color-variants("neutral", mixins.$lightness-neutral);
+    @include mixins.define-color-variants("primary", mixins.$lightness-primary);
+    @include mixins.define-color-variants("error", mixins.$lightness-error);
+    @include mixins.define-color-variants("custom", mixins.$lightness-custom);
+    @include mixins.define-color-variants("status-progress", mixins.$lightness-status-progress);
+    @include mixins.define-color-variants("status-paused", mixins.$lightness-status-paused);
+
+    // === Typography ===
+    --font-stack-base: "Poppins", sans-serif, system-ui, Avenir, Helvetica, Arial;
+    --font-stack-primary: 'Segoe UI', Roboto, sans-serif;
+    --font-stack-secondary: 'Notable', sans-serif, system-ui, Avenir, Helvetica, Arial;
+    font-family: var(--font-stack-base);
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    // === Notes ===
+    @each $name,
+    $variant in mixins.$notes-colors {
+        --color-note-presistent-dark-#{$name}: #{map-get($variant, dark)};
+        --color-note-presistent-light-#{$name}: #{map-get($variant, light)};
+    }
+
+    // === Base ===
+    color-scheme: light dark;
+    color: var(--color-text-primary, var(--color-neutral-00));
+    background-color: var(--color-surface-default, var(--color-neutral-07));
+
+    // === Transition ===
+    --anim-fade-default: all 200ms ease-out;
+    --anim-fade-smooth: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    --anim-btn-interaction: all 180ms ease-in-out;
+    --anim-btn-bg: background-color 160ms ease-in;
+    --anim-btn-border: border-color 150ms ease-in-out;
+    --anim-link-color: color 160ms ease-in-out;
+    --anim-link-underline: border-color 160ms ease-in-out;
+    --anim-modal-fade: all 320ms cubic-bezier(0.33, 1, 0.68, 1);
+    --anim-modal-scale: transform 280ms ease-out;
+    --anim-slider-thumb: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --anim-slider-track: background-color 180ms ease-in;
+    --anim-checkbox-bg: background-color 250ms ease-in;
+    --anim-checkbox-icon: opacity 300ms ease,
+    transform 300ms ease;
+    --anim-checkbox-switch: background-color 250ms ease-in,
+    left 200ms ease;
+
+    // === Border-Radius ===
+    --br-day-btn: 10px;
+    --br-btn: 10px;
+    --br-layout: 30px;
+    --br-layout-md: 20px;
+    --br-layout-sm: 15px;
+
+    // === Overlay ===
+    @include mixins.generate-overlay-colors;
+    @include mixins.generate-overlay-colors(neutral-light);
+    @include mixins.generate-overlay-colors(primary, 39);
+    @include mixins.generate-overlay-colors(custom, 15);
+    @include mixins.generate-overlay-colors(status-progress, 46);
+    @include mixins.generate-overlay-colors(status-paused, 64);
+
+    // === Position ===
+    --z-behind: -1;
+    --z-default: 1;
+    --z-overlay: 5;
+    --z-overlay-modal: 1000;
+    --z-overall-timer: 5000;
+    --z-overall-timer-model: 7000;
+}

@@ -1,0 +1,139 @@
+@mixin input-base {
+    position: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    gap: 5px;
+    outline: none;
+    height: 100%;
+    max-height: 58px;
+    min-height: 58px;
+    color: var(--color-input-txt);
+    background: var(--color-input-bg);
+    transition: var(--anim-btn-interaction);
+
+    border: 2px solid var(--color-input-state-bd);
+    padding: 14px 18px;
+    border-radius: var(--br-btn);
+    margin: 0;
+    width: 100%;
+
+    &:has(input:hover) {
+        border-color: var(--color-input-bd-hover);
+    }
+
+    &:has(input:active),
+    &:has(input:focus) {
+        border-color: var(--color-input-bd-focus);
+    }
+}
+
+@mixin input-compact {
+    max-height: 46px;
+    min-height: 46px;
+    padding: 8px 12px;
+}
+
+@mixin input-textfield {
+    --deduct: 60px;
+    box-sizing: border-box;
+    background: transparent;
+    color: inherit;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+@mixin input-help($color) {
+    margin: 8px 0 4px 2px;
+    font-size: 15px;
+    color: $color;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    --color-input-state-bd: var(--color-input-bd);
+
+    &--compact {
+        .input__content {
+            @include input-compact;
+        }
+    }
+
+    &--stack {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__raw {
+        background: transparent;
+        color: var(--color-input-txt);
+        border: none;
+        border-bottom: 2px solid var(--color-input-bd);
+        padding: 6px 0;
+        font-size: 15px;
+        outline: none;
+        width: 100%;
+        transition: var(--anim-btn-interaction);
+
+        &::placeholder {
+            color: var(--color-input-txt);
+            opacity: 1;
+        }
+
+        &:hover {
+            border-color: var(--color-input-bd-hover);
+        }
+
+        &:active,
+        &:focus {
+            border-color: var(--color-input-bd-focus);
+        }
+    }
+
+    &__content {
+        @include input-base;
+
+        .input__group {
+            position: inherit;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 8px;
+
+            input {
+                @include input-textfield;
+            }
+        }
+
+        .input__icon {
+            padding: 0;
+            width: 35px !important;
+            height: 35px !important;
+        }
+    }
+
+    &__help {
+        @include input-help(var(--color-input-help-default));
+    }
+
+    &--success {
+        --color-input-state-bd: var(--color-input-help-success);
+
+        .input__help {
+            @include input-help(var(--color-input-help-success));
+        }
+    }
+
+    &--error {
+        --color-input-state-bd: var(--color-input-help-error);
+
+        .input__help {
+            @include input-help(var(--color-input-help-error));
+        }
+    }
+}

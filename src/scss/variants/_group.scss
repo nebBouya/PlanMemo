@@ -1,0 +1,47 @@
+@use "../themes/mixins";
+
+@each $name, $variant in mixins.$group-colors {
+    .group-color--#{$name} {
+        @extend .group-color;
+        background-color: var(--color-group-#{$name}) !important;
+    }
+}
+
+.group-color--df-pres {
+    background-color: var(--color-neutral-01) !important;
+}
+
+.group-color--default {
+    background-color: var(--color-text-primary) !important;
+}
+
+.group-color {
+    display: inline-block;
+    box-sizing: border-box;
+    --size: 6px;
+
+    &--bullet {
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        background-color: currentColor;
+        vertical-align: middle;
+    }
+
+    &--rod {
+        width: var(--size);
+        min-width: var(--size);
+        max-width: var(--size);
+        border-radius: 999px;
+        background-color: currentColor;
+        align-self: stretch;
+    }
+
+    &--sm {
+        --size: 5px;
+    }
+
+    &--md {
+        --size: 10px;
+    }
+}

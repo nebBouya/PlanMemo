@@ -1,0 +1,12 @@
+{
+    "name": "plan_memo",
+    "private": true,
+    "scripts": {
+        "scss": "sass --watch src/scss:public/css"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.29.0",
+        "eslint": "^9.29.0",
+        "globals": "^16.2.0"
+    }
+}

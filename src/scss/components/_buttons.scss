@@ -1,0 +1,155 @@
+@use '../themes/mixins';
+
+@mixin button-base {
+    box-sizing: border-box;
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    min-height: 58px;
+    max-height: 58px;
+    padding: 14px 18px;
+    margin: 0;
+    border: 2px solid var(--color-btn-bd);
+    border-radius: var(--br-btn);
+    background: var(--color-btn-bg);
+    color: var(--color-btn-txt);
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+
+    font: 400 16px/1 var(--font-stack-base);
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+    transition: var(--anim-btn-interaction);
+
+    @include mixins.no-user-select;
+    @include mixins.no-touch-feedback;
+
+    &:not(:disabled):not([aria-disabled="true"]):not(.button--static) {
+
+        &:hover,
+        &:focus {
+            color: var(--color-btn-txt-hover, var(--color-btn-txt));
+            background: var(--color-btn-bg-hover, var(--color-btn-bg));
+            border-color: var(--color-btn-bd-hover, var(--color-btn-bd));
+        }
+
+        &:active {
+            color: var(--color-btn-txt-active, var(--color-btn-txt));
+            background: var(--color-btn-bg-active, var(--color-btn-bg));
+            border-color: var(--color-btn-bd-active, var(--color-btn-bd));
+        }
+    }
+
+    &>* {
+        font: inherit;
+        color: inherit;
+        text-decoration: inherit;
+    }
+}
+
+@mixin button-variant($name) {
+    $props: txt, bg, bd;
+
+    @if $name =="default" {
+        @each $prop in $props {
+            --color-btn-#{$prop}: var(--color-btn-#{$name}-#{$prop});
+            --color-btn-#{$prop}-hover: var(--color-btn-#{$name}-#{$prop}-hover);
+            --color-btn-#{$prop}-active: var(--color-btn-#{$name}-#{$prop}-active);
+        }
+    }
+
+    @else {
+        &.button--#{$name} {
+            @each $prop in $props {
+                --color-btn-#{$prop}: var(--color-btn-#{$name}-#{$prop});
+                --color-btn-#{$prop}-hover: var(--color-btn-#{$name}-#{$prop}-hover);
+                --color-btn-#{$prop}-active: var(--color-btn-#{$name}-#{$prop}-active);
+            }
+        }
+    }
+}
+
+@mixin button-full {
+    width: 100%;
+    max-width: 100%;
+}
+
+@mixin button-compact {
+    min-height: 46px;
+    max-height: 46px;
+    padding: 8px 12px;
+}
+
+@mixin button-icon($size: 58px, $icon-size: 25px, $radius: 100%) {
+    width: $size;
+    height: $size;
+    border-radius: $radius;
+
+    .button__icon {
+        font-size: $icon-size;
+    }
+}
+
+.button,
+[role='button'] {
+    @include button-base;
+
+    @each $variant, $config in mixins.$button-light-theme-tokens {
+        @include button-variant($variant);
+    }
+
+    &.button--full {
+        @include button-full;
+    }
+
+    &.button--compact {
+        @include button-compact;
+
+        &.button--icon {
+            @include button-icon(46px, 20px, 10px);
+        }
+    }
+
+    &.button--icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include button-icon();
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        .button__content {
+            opacity: 0.8;
+        }
+    }
+
+    &.button--static {
+        cursor: default !important;
+    }
+
+    .button__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        .button__group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button__icon--left,
+        .button__icon--right {
+            font-size: 20px;
+
+            &.button__icon-compact {
+                opacity: 0.7;
+                font-size: 8px;
+            }
+        }
+    }
+}

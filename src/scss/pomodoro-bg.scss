@@ -1,0 +1,135 @@
+$hero-gradients: (
+    "black": (c0: hsla(267, 1%, 12%, 1), x0: 85%, y0: 80%, s0s: 9%, s0e: 55%,
+        c1: hsla(336, 2%, 22%, 1), x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: hsla(54, 0%, 0%, 0.49), x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: hsla(299, 4%, 36%, 1), x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "purple-peach": (c0: #5F0A87, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #A4508B, x1: 60%, y1: 24%, s1s: 5%, s1e: 70%,
+        c2: #5F0A87, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #A4508B, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "crimson-wine": (c0: #66023c, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #cd1c18, x1: 60%, y1: 24%, s1s: 5%, s1e: 70%,
+        c2: #66023c, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #cd1c18, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "teal-glow": (c0: #008080, x0: 75%, y0: 60%, s0s: 10%, s0e: 60%,
+        c1: #009990, x1: 50%, y1: 30%, s1s: 10%, s1e: 70%,
+        c2: #008080, x2: 20%, y2: 70%, s2s: 5%, s2e: 50%,
+        c3: #009990, x3: 30%, y3: 10%, s3s: 10%, s3e: 60%),
+    "aqua-sky": (c0: #0054b4, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #40e0d0, x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: #0054b4, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #40e0d0, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "indigo-violet": (c0: #667eea, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #764ba2, x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: #667eea, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #764ba2, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "ocean-mist": (c0: #13547a, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #80d0c7, x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: #13547a, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #80d0c7, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "flamingo-rose": (c0: #ff0844, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #ffb199, x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: #ff0844, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #ffb199, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "gray-black": (c0: #434343, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #000000, x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: #434343, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #000000, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "twilight-glow": (c0: #0c3483, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #a2b6df, x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: #6b8cce, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #a2b6df, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%),
+    "peach-sand": (c0: #c79081, x0: 85%, y0: 80%, s0s: 10%, s0e: 55%,
+        c1: #dfa579, x1: 60%, y1: 24%, s1s: 5%, s1e: 72%,
+        c2: #c79081, x2: 13%, y2: 82%, s2s: 5%, s2e: 52%,
+        c3: #dfa579, x3: 24%, y3: 7%, s3s: 13%, s3e: 68%)
+);
+
+$props: (
+    x,
+    y,
+    c,
+    s-start,
+    s-end
+);
+
+@for $i from 0 through 3 {
+    @each $p in $props {
+        @property --#{$p}-#{$i} {
+            syntax: "#{if(str-index($p, 'c'), '<color>', '<percentage>')}";
+            inherits: false;
+            initial-value: #{if(str-index($p, "c"), "transparent", "50%")};
+        }
+    }
+}
+
+@keyframes hero-gradient-animation {
+    0% {
+        --y-0: 80%;
+        --x-0: 85%;
+        --y-1: 24%;
+        --x-1: 60%;
+        --y-2: 82%;
+        --x-2: 13%;
+        --y-3: 7%;
+        --x-3: 24%;
+    }
+
+    100% {
+        --y-0: 94%;
+        --x-0: 31%;
+        --y-1: 25%;
+        --x-1: 2%;
+        --y-2: 20%;
+        --x-2: 98%;
+        --y-3: 92%;
+        --x-3: 95%;
+    }
+}
+
+@each $name, $v in $hero-gradients {
+    .pomodoro-gradient--#{$name} {
+        background-color: #000;
+        background-blend-mode: normal, normal, normal, normal;
+        animation: hero-gradient-animation 10s ease-in-out infinite alternate;
+        background-image:
+            radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)),
+            radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)),
+            radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)),
+            radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+
+        --c-0: #{map-get($v, c0)};
+        --x-0: #{map-get($v, x0)};
+        --y-0: #{map-get($v, y0)};
+        --s-start-0: #{map-get($v, s0s)};
+        --s-end-0: #{map-get($v, s0e)};
+        --c-1: #{map-get($v, c1)};
+        --x-1: #{map-get($v, x1)};
+        --y-1: #{map-get($v, y1)};
+        --s-start-1: #{map-get($v, s1s)};
+        --s-end-1: #{map-get($v, s1e)};
+        --c-2: #{map-get($v, c2)};
+        --x-2: #{map-get($v, x2)};
+        --y-2: #{map-get($v, y2)};
+        --s-start-2: #{map-get($v, s2s)};
+        --s-end-2: #{map-get($v, s2e)};
+        --c-3: #{map-get($v, c3)};
+        --x-3: #{map-get($v, x3)};
+        --y-3: #{map-get($v, y3)};
+        --s-start-3: #{map-get($v, s3s)};
+        --s-end-3: #{map-get($v, s3e)};
+    }
+}
+
+@each $name, $vars in $hero-gradients {
+    .pomodoro-gradient-sample--#{$name} {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.75rem;
+        background: linear-gradient(135deg,
+                map-get($vars, c0) 0%,
+                map-get($vars, c1) 33%,
+                map-get($vars, c2) 66%,
+                map-get($vars, c3) 100%);
+    }
+}

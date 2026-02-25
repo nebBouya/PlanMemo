@@ -1,0 +1,319 @@
+.pomodoro-screen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-overall-timer);
+  background: var(--color-neutral-00);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pomodoro-screen__background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-behind);
+}
+.pomodoro-screen__background--item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pomodoro-screen__background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to top, var(--color-overlay-neutral-70) 0%, var(--color-overlay-neutral-0) 50%, var(--color-overlay-neutral-70) 100%);
+  backdrop-filter: blur(5px);
+}
+.pomodoro-screen__header {
+  width: 100%;
+}
+.pomodoro-screen__header--intro {
+  text-align: center;
+  color: var(--color-neutral-08);
+}
+.pomodoro-screen__header--intro h3 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+.pomodoro-screen__header--intro p {
+  opacity: 0.7;
+  line-height: 1.3;
+  max-width: 500px;
+  margin-inline: auto;
+}
+.pomodoro-screen__time-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 30px;
+  margin: 50px 0;
+}
+.pomodoro-screen__time-controls .time-controls__value {
+  color: var(--color-neutral-08);
+  font-size: 6rem;
+  font-family: var(--font-stack-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pomodoro-screen__time-controls .time-controls__value--playing {
+  display: flex !important;
+  flex-direction: row !important;
+  font-size: 8rem;
+  font-weight: 700;
+}
+@media screen and (max-width: 750px) {
+  .pomodoro-screen__time-controls .time-controls__value--playing {
+    font-size: 7rem !important;
+  }
+}
+@media screen and (max-width: 450px) {
+  .pomodoro-screen__time-controls .time-controls__value--playing {
+    font-size: 5rem !important;
+  }
+}
+@media screen and (max-width: 750px) {
+  .pomodoro-screen__time-controls .time-controls__value {
+    font-size: 5rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pomodoro-screen__time-controls {
+    display: grid;
+    grid-template-areas: "value value" "button1 button2";
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 1.5rem;
+  }
+  .pomodoro-screen__time-controls .time-controls__value {
+    grid-area: value;
+    font-size: 6.5rem;
+  }
+}
+@media screen and (max-width: 700px) and (max-width: 550px) {
+  .pomodoro-screen__time-controls .time-controls__value {
+    font-size: 5rem;
+  }
+}
+@media screen and (max-width: 700px) and (max-width: 450px) {
+  .pomodoro-screen__time-controls .time-controls__value {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pomodoro-screen__time-controls .time-controls__button:first-child {
+    grid-area: button1;
+    margin-left: auto;
+  }
+  .pomodoro-screen__time-controls .time-controls__button:last-child {
+    grid-area: button2;
+    margin-right: auto;
+  }
+}
+.pomodoro-screen__card {
+  max-width: 700px;
+  width: 100%;
+  padding: 50px;
+}
+.pomodoro-screen__breaks-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--color-neutral-08);
+}
+.pomodoro-screen__breaks-info .checkbox__label {
+  justify-content: space-between;
+  width: 100%;
+}
+.pomodoro-screen__actions {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.pomodoro-screen__floating-controls {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.pomodoro-screen__floating-exit {
+  top: 0;
+  left: 0;
+  bottom: auto;
+  right: auto;
+}
+.pomodoro-screen--progress-card {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-overlay-neutral-50);
+  backdrop-filter: blur(10px);
+  border-radius: var(--br-layout-sm);
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  z-index: var(--z-overall-timer);
+  overflow: hidden;
+}
+@media screen and (max-width: 1000px) {
+  .pomodoro-screen--progress-card {
+    max-width: calc(100% - 50px);
+  }
+}
+.pomodoro-screen--progress-card__header {
+  color: var(--color-neutral-08);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.pomodoro-screen--progress-card__header p {
+  opacity: 0.5;
+}
+.pomodoro-screen--progress-card__progress-list {
+  display: flex;
+  gap: 10px;
+  color: var(--color-neutral-08);
+  opacity: 0.5;
+}
+@media screen and (max-width: 700px) {
+  .pomodoro-screen--progress-card__progress-list {
+    display: none;
+  }
+}
+.pomodoro-screen--progress-card__progress-list .progress-list_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pomodoro-screen--progress-card__progress-list .progress-list_item:not(:first-child)::before {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 100%;
+  margin-right: 5px;
+  background: var(--color-overlay-neutral-light-30);
+}
+.pomodoro-screen--progress-card__task {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 20px 0;
+}
+@media screen and (max-width: 500px) {
+  .pomodoro-screen--progress-card__task .progress__bar {
+    display: none;
+  }
+}
+.pomodoro-screen--progress-card__task--section {
+  color: var(--color-neutral-08);
+}
+.pomodoro-screen--progress-card__task--section .task-heading {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.pomodoro-screen--progress-card__task--section .task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.pomodoro-screen--progress-card__task--section .checkbox__label {
+  justify-content: flex-start;
+}
+.pomodoro-screen--progress-card .pomodoro-progress-notice {
+  color: var(--color-neutral-08);
+  opacity: 0.5;
+  margin-top: 0.4rem;
+}
+
+.pomodoro__button--global {
+  --bg: var(--color-overlay-neutral-light-10);
+  color: var(--color-neutral-08) !important;
+  background: var(--bg) !important;
+  border-radius: var(--br-layout-sm);
+  border: 2px dashed var(--color-overlay-neutral-light-30) !important;
+  backdrop-filter: blur(20px);
+}
+.pomodoro__button--global:hover, .pomodoro__button--global:focus {
+  --bg: var(--color-overlay-neutral-light-20);
+}
+.pomodoro__button--global:active {
+  --bg: var(--color-overlay-neutral-light-30);
+}
+.pomodoro__button--global:disabled {
+  --bg: var(--color-overlay-neutral-light-10);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mini-pomodoro__content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.mini-pomodoro__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--color-neutral-08);
+  font-size: 1.9em;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.mini-pomodoro__timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+  width: 100%;
+  gap: 10px;
+}
+.mini-pomodoro__timer .timer__duration {
+  display: flex;
+  color: var(--color-neutral-08);
+  font-family: var(--font-stack-secondary);
+  font-size: 3.5rem;
+  font-weight: 500;
+}
+.mini-pomodoro__timer .timer__control {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+.mini-pomodoro__timer .timer__control--button {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  min-height: 35px;
+}
+.mini-pomodoro__timer .timer_actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/*# sourceMappingURL=pomodoro.css.map */

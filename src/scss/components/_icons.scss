@@ -1,0 +1,128 @@
+@mixin masked-image($path) {
+    mask-image: url($path);
+    -webkit-mask-image: url($path);
+}
+
+$icon-path: "../icons/";
+$icon-size: 1.25em;
+$icons: (
+    "add": "Add.svg",
+    "airplane": "Airplane.svg",
+    "bell": "Bell.svg",
+    "book": "Book.svg",
+    "book-2": "Book-2.svg",
+    "box": "Box.svg",
+    "bomb": "Bomb.svg",
+    "briefcase": "Briefcase.svg",
+    "buildings": "Buildings.svg",
+    "buildings-2": "Buildings-2.svg",
+    "buildings-3": "Buildings-3.svg",
+    "danger": "Danger.svg",
+    "confetti": "Confetti.svg",
+    "cosmetic": "Cosmetic.svg",
+    "corkscrew": "Corkscrew.svg",
+    "cup": "Cup.svg",
+    "color": "color.svg",
+    "database": "Database.svg",
+    "electric-refueling": "Electric-refueling.svg",
+    "donut-bitten": "Donut-bitten.svg",
+    "donut": "Donut.svg",
+    "ghost-smile": "Ghost-smile.svg",
+    "ghost": "Ghost.svg",
+    "gas": "Gas.svg",
+    "hanger": "Hanger.svg",
+    "hanger-2": "Hanger-2.svg",
+    "ladle": "Ladle.svg",
+    "home-2": "Home-2.svg",
+    "help": "Help.svg",
+    "magic-stick": "Magic-stick.svg",
+    "magic-stick-2": "Magic-stick-2.svg",
+    "magic-stick-3": "Magic-stick-3.svg",
+    "magnet": "Magnet.svg",
+    "mask-happy": "Mask-happy.svg",
+    "mask-sad": "Mask-sad.svg",
+    "masks": "Masks.svg",
+    "palette": "Palette.svg",
+    "palette-2": "Palette-2.svg",
+    "palette-round": "Palette-round.svg",
+    "perfume": "Perfume.svg",
+    "paw": "Paw.svg",
+    "scooter": "Scooter.svg",
+    "bus": "Bus.svg",
+    "calendar": "Calendar.svg",
+    "cat": "Cat.svg",
+    "check": "Check.svg",
+    "chef-hat": "Chef-hat.svg",
+    "chevron-up": "Chevron-up.svg",
+    "chevron-down": "Chevron-down.svg",
+    "chevron-left": "Chevron-left.svg",
+    "chevron-right": "Chevron-right.svg",
+    "chevron-h": "Chevron-h.svg",
+    "chevron-v": "Chevron-v.svg",
+    "dots": "Dots.svg",
+    "edit": "Edit.svg",
+    "expand": "Expand.svg",
+    "clock": "Clock.svg",
+    "close": "Close.svg",
+    "code": "Code.svg",
+    "info": "Info.svg",
+    "delivery": "Delivery.svg",
+    "up-arrow": "Up-arrow.svg",
+    "down-arrow": "Down-arrow.svg",
+    "email": "Email.svg",
+    "fire": "Fire.svg",
+    "file-download": "File-download.svg",
+    "file-send": "File-send.svg",
+    "gamepad-old": "Gamepad-old.svg",
+    "gamepad": "Gamepad.svg",
+    "health": "Health.svg",
+    "health-2": "Health-2.svg",
+    "health-3": "Health-3.svg",
+    "heart": "Heart.svg",
+    "home": "Home.svg",
+    "inbox": "Inbox.svg",
+    "incognito": "Incognito.svg",
+    "map-point": "Map-point.svg",
+    "map": "Map.svg",
+    "menu": "Menu.svg",
+    "maximize": "Maximize.svg",
+    "minimize": "Minimize.svg",
+    "quit-pip": "Quit-pip.svg",
+    "to-pip": "To-pip.svg",
+    "notes": "Notes.svg",
+    "pause": "Pause.svg",
+    "play": "Play.svg",
+    "remove": "Remove.svg",
+    "search": "Search.svg",
+    "send": "Send.svg",
+    "settings": "Settings.svg",
+    "gallery": "Gallery.svg",
+    "leaf": "Leaf.svg",
+    "update": "Update.svg",
+    "waves": "Waves.svg",
+    "cup-hot": "Cup-hot.svg",
+    "airplane-2": "Airplane-2.svg",
+    "cloud-rain": "Cloud-rain.svg",
+);
+
+.icon {
+    display: inline-block;
+    width: $icon-size;
+    height: $icon-size;
+    min-width: $icon-size;
+    min-height: $icon-size;
+    background-color: currentColor;
+    font-size: inherit;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+}
+
+@each $name, $file in $icons {
+    .icon--#{$name} {
+        @include masked-image("#{$icon-path}#{$file}");
+    }
+}

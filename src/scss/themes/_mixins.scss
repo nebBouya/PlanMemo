@@ -1,0 +1,360 @@
+$color-brand-palettes: (neutral: (hue: 0, saturation: 0%),
+    primary: (hue: 171, saturation: 60%),
+    error: (hue: 0, saturation: 72%),
+    custom: (hue: 182, saturation: 100%),
+    status-progress: (hue: 207, saturation: 89%),
+    status-paused: (hue: 93, saturation: 40%),
+);
+
+$lightness-neutral: (true_black: 0%,
+    0: 5%,
+    1: 10%,
+    2: 11%,
+    3: 15%,
+    4: 31%,
+    5: 50%,
+    6: 70%,
+    7: 96%,
+    8: 100%);
+
+$lightness-primary: (0: 11%,
+    1: 24%,
+    2: 34%,
+    3: 39%,
+    4: 44%);
+
+$lightness-error: (0: 20%,
+    1: 37%,
+    2: 50%,
+    3: 56%,
+    4: 60%);
+
+$lightness-custom: (0: 20%,
+    1: 24%,
+);
+
+$lightness-status-progress: (0: 46%,
+    1: 50%,
+);
+
+$lightness-status-paused: (0: 64%,
+    1: 68%,
+);
+
+$group-colors: (red: (light: #FF3B30, dark: #FF453A),
+    orange: (light: #FF9500, dark: #FF9F0A),
+    yellow: (light: #FFD60A, dark: #FFD60A),
+    green: (light: #34C759, dark: #30D158),
+    cyan: (light: #32ADE6, dark: #64D2FF),
+    blue: (light: #007AFF, dark: #0A84FF),
+    purple: (light: #5856D6, dark: #5E5CE6),
+    pink: (light: #FF2D55, dark: #FF375F),
+    maroon: (light: #AF2E3B, dark: #D94A5B),
+    gold: (light: #DAA520, dark: #FFD700),
+    gray: (light: #8E8E93, dark: #AEAEB2),
+    skin-pink: (light: #FADCD9, dark: #FFC1C0));
+
+$notes-colors: (almond: (light: #F8E5DA,
+        dark: #C56C52),
+    mint: (light: #D3F3E1,
+        dark: #3FAE7C),
+    honey: (light: #FFF3C4,
+        dark: #C89500),
+    lavender: (light: #E8E4F9,
+        dark: #7C6CBF),
+    sky: (light: #D9F0FF,
+        dark: #3B83BD),
+    rose: (light: #FDE2E4,
+        dark: #C94B5C),
+    pistachio: (light: #E8F8D8,
+        dark: #5A8F2F),
+    apricot: (light: #FFE5B4,
+        dark: #D8823C),
+    periwinkle: (light: #E0E9FF,
+        dark: #5F79C5));
+
+
+
+
+@mixin define-hsl-components($palettes) {
+
+    @each $name,
+    $vals in $palettes {
+        --color-hsl-#{$name}-hue: #{map-get($vals, "hue")};
+        --color-hsl-#{$name}-saturation: #{map-get($vals, "saturation")};
+    }
+}
+
+@mixin define-color-variants($family, $lightness-map) {
+
+    @each $index,
+    $light in $lightness-map {
+        $key: if(type-of($index)=='number'and $index < 10,
+            '0#{"" + $index}',
+            $index);
+
+        --color-#{$family}-#{$key}: hsl(var(--color-hsl-#{$family}-hue),
+            var(--color-hsl-#{$family}-saturation),
+            #{$light});
+    }
+}
+
+
+@function hsla-color($family, $light, $opacity: 100%) {
+    $color-values: map-get($color-brand-palettes, $family);
+    $hue: map-get($color-values, "hue");
+    $saturation: map-get($color-values, "saturation");
+
+    @return hsla($hue, $saturation, $light, $opacity);
+}
+
+@mixin define-button-variant($name, $map) {
+    --color-btn-#{$name}-txt: #{map-get($map, "txt")};
+    --color-btn-#{$name}-txt-hover: #{map-get($map, "txt-hover")};
+    --color-btn-#{$name}-txt-active: #{map-get($map, "txt-active")};
+    --color-btn-#{$name}-bg: #{map-get($map, "bg")};
+    --color-btn-#{$name}-bg-hover: #{map-get($map, "bg-hover")};
+    --color-btn-#{$name}-bg-active: #{map-get($map, "bg-active")};
+    --color-btn-#{$name}-bd: #{map-get($map, "bd")};
+    --color-btn-#{$name}-bd-hover: #{map-get($map, "bd-hover")};
+    --color-btn-#{$name}-bd-active: #{map-get($map, "bd-active")};
+}
+
+$button-light-theme-tokens: (default: ("txt": var(--color-neutral-04),
+        "txt-hover": var(--color-neutral-04),
+        "txt-active": var(--color-neutral-04),
+        "bg": var(--color-neutral-08),
+        "bg-hover": var(--color-neutral-08),
+        "bg-active": var(--color-neutral-08),
+        "bd": var(--color-neutral-07),
+        "bd-hover": var(--color-neutral-06),
+        "bd-active": var(--color-neutral-05)),
+    neutral: ("txt": var(--color-neutral-04),
+        "txt-hover": var(--color-neutral-03),
+        "txt-active": var(--color-neutral-03),
+        "bg": var(--color-neutral-07),
+        "bg-hover": var(--color-neutral-07),
+        "bg-active": var(--color-neutral-07),
+        "bd": var(--color-neutral-07),
+        "bd-hover": var(--color-neutral-07),
+        "bd-active": var(--color-neutral-06)),
+    transparent: ("txt": var(--color-neutral-04),
+        "txt-hover": var(--color-neutral-03),
+        "txt-active": var(--color-neutral-02),
+        "bg": transparent,
+        "bg-hover": transparent,
+        "bg-active": transparent,
+        "bd": transparent,
+        "bd-hover": transparent,
+        "bd-active": transparent),
+    primary: ("txt": var(--color-neutral-08),
+        "txt-hover": var(--color-neutral-08),
+        "txt-active": var(--color-neutral-08),
+        "bg": var(--color-primary-02),
+        "bg-hover": var(--color-primary-03),
+        "bg-active": var(--color-primary-03),
+        "bd": var(--color-primary-02),
+        "bd-hover": var(--color-primary-01),
+        "bd-active": var(--color-primary-00)),
+    primary-outline: ("txt": var(--color-primary-02),
+        "txt-hover": var(--color-primary-02),
+        "txt-active": var(--color-primary-03),
+        "bg": var(--color-neutral-08),
+        "bg-hover": var(--color-neutral-08),
+        "bg-active": var(--color-neutral-08),
+        "bd": var(--color-neutral-07),
+        "bd-hover": var(--color-primary-02),
+        "bd-active": var(--color-primary-03)),
+    error: ("txt": var(--color-neutral-08),
+        "txt-hover": var(--color-neutral-08),
+        "txt-active": var(--color-neutral-08),
+        "bg": var(--color-error-02),
+        "bg-hover": var(--color-error-03),
+        "bg-active": var(--color-error-03),
+        "bd": var(--color-error-02),
+        "bd-hover": var(--color-error-01),
+        "bd-active": var(--color-error-00)),
+    error-outline: ("txt": var(--color-error-02),
+        "txt-hover": var(--color-error-02),
+        "txt-active": var(--color-error-03),
+        "bg": var(--color-neutral-08),
+        "bg-hover": var(--color-neutral-08),
+        "bg-active": var(--color-neutral-08),
+        "bd": var(--color-neutral-07),
+        "bd-hover": var(--color-error-02),
+        "bd-active": var(--color-error-03)),
+    custom: ("txt": var(--color-neutral-08),
+        "txt-hover": var(--color-neutral-08),
+        "txt-active": var(--color-neutral-08),
+        "bg": var(--color-custom-00),
+        "bg-hover": var(--color-custom-00),
+        "bg-active": var(--color-custom-01),
+        "bd": var(--color-custom-00),
+        "bd-hover": var(--color-custom-01),
+        "bd-active": var(--color-custom-01)),
+    custom-outline: ("txt": var(--color-custom-00),
+        "txt-hover": var(--color-custom-00),
+        "txt-active": var(--color-custom-01),
+        "bg": var(--color-neutral-08),
+        "bg-hover": var(--color-neutral-08),
+        "bg-active": var(--color-neutral-08),
+        "bd": var(--color-neutral-07),
+        "bd-hover": var(--color-custom-00),
+        "bd-active": var(--color-custom-01)),
+);
+$button-dark-theme-tokens: (default: ("txt": var(--color-neutral-05),
+        "txt-hover": var(--color-neutral-05),
+        "txt-active": var(--color-neutral-05),
+        "bg": var(--color-neutral-01),
+        "bg-hover": var(--color-neutral-01),
+        "bg-active": var(--color-neutral-01),
+        "bd": var(--color-neutral-03),
+        "bd-hover": var(--color-neutral-04),
+        "bd-active": var(--color-neutral-05)),
+    neutral: ("txt": var(--color-neutral-04),
+        "txt-hover": var(--color-neutral-03),
+        "txt-active": var(--color-neutral-03),
+        "bg": var(--color-neutral-03),
+        "bg-hover": var(--color-neutral-02),
+        "bg-active": var(--color-neutral-02),
+        "bd": var(--color-neutral-03),
+        "bd-hover": var(--color-neutral-07),
+        "bd-active": var(--color-neutral-06)),
+    transparent: ("txt": var(--color-neutral-08),
+        "txt-hover": var(--color-overlay-neutral-light-80),
+        "txt-active": var(--color-overlay-neutral-light-70),
+        "bg": transparent,
+        "bg-hover": transparent,
+        "bg-active": transparent,
+        "bd": transparent,
+        "bd-hover": transparent,
+        "bd-active": transparent),
+    primary: ("txt": var(--color-neutral-08),
+        "txt-hover": var(--color-neutral-08),
+        "txt-active": var(--color-neutral-08),
+        "bg": var(--color-primary-02),
+        "bg-hover": var(--color-primary-03),
+        "bg-active": var(--color-primary-03),
+        "bd": var(--color-primary-02),
+        "bd-hover": var(--color-primary-01),
+        "bd-active": var(--color-primary-00)),
+    primary-outline: ("txt": var(--color-primary-02),
+        "txt-hover": var(--color-primary-02),
+        "txt-active": var(--color-primary-03),
+        "bg": var(--color-neutral-01),
+        "bg-hover": var(--color-neutral-01),
+        "bg-active": var(--color-neutral-01),
+        "bd": var(--color-neutral-03),
+        "bd-hover": var(--color-primary-02),
+        "bd-active": var(--color-primary-03)),
+    error: ("txt": var(--color-neutral-08),
+        "txt-hover": var(--color-neutral-08),
+        "txt-active": var(--color-neutral-08),
+        "bg": var(--color-error-02),
+        "bg-hover": var(--color-error-03),
+        "bg-active": var(--color-error-03),
+        "bd": var(--color-error-02),
+        "bd-hover": var(--color-error-01),
+        "bd-active": var(--color-error-00)),
+    error-outline: ("txt": var(--color-error-03),
+        "txt-hover": var(--color-error-03),
+        "txt-active": var(--color-error-04),
+        "bg": var(--color-neutral-01),
+        "bg-hover": var(--color-neutral-01),
+        "bg-active": var(--color-neutral-01),
+        "bd": var(--color-neutral-03),
+        "bd-hover": var(--color-error-03),
+        "bd-active": var(--color-error-04)),
+);
+
+@mixin no-user-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+@mixin neutral-light-scroll-bar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-overlay-neutral-50) transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-overlay-neutral-50);
+        border-radius: 6px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: var(--color-overlay-neutral-70);
+    }
+}
+
+@mixin custom-scroll-bar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-scroll-thumb) transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-scroll-thumb);
+        border-radius: 6px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: var(--color-scroll-thumb-hover);
+    }
+}
+
+@mixin no-touch-feedback {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+}
+
+@mixin absolute-fill {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@mixin generate-overlay-colors($name: neutral, $light: 0, $start: 0, $end: 90, $step: 10) {
+    $token_name: $name;
+
+    @if $name==neutral-light {
+        $token_name: neutral-light;
+        $light: 100;
+        $name: neutral;
+    }
+
+    @for $i from $start through $end {
+        @if $i % $step==0 {
+            --color-overlay-#{$token_name}-#{$i}: #{hsla-color($name, $light, ($i / 100))};
+        }
+    }
+}

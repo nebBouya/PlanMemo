@@ -1,0 +1,126 @@
+@use 'mixins';
+
+html[data-ui-state=dark] {
+    // === Base ===
+    --color-text-primary: var(--color-neutral-08);
+    --color-surface-default: var(--color-neutral-00);
+    --color-surface-primary: var(--color-neutral-02);
+    --color-surface-txt-default: var(--color-neutral-06);
+
+    // === Button ===
+    @each $variant,
+    $config in mixins.$button-dark-theme-tokens {
+        @include mixins.define-button-variant($variant, $config);
+    }
+
+    // === Input ===
+    --color-input-txt: var(--color-neutral-07);
+    --color-input-bg: var(--color-neutral-03);
+    --color-input-bd: var(--color-neutral-03);
+    --color-input-bd-hover: var(--color-neutral-04);
+    --color-input-bd-focus: var(--color-neutral-05);
+    --color-input-help-default: var(--color-neutral-04);
+    --color-input-help-success: var(--color-primary-04);
+    --color-input-help-error: var(--color-error-04);
+
+    // === Checkbox ===
+    --color-checkbox-thumb: var(--color-neutral-05);
+    --color-checkbox-thumb-active: var(--color-neutral-08);
+    --color-checkbox-bg: var(--color-neutral-02);
+    --color-checkbox-bd: var(--color-overlay-neutral-light-20);
+    --color-checkbox-bd-hover: var(--color-primary-03);
+    --color-checkbox-active: var(--color-primary-01);
+    --color-checkbox-active-inner: var(--color-neutral-08);
+    --color-checkbox-disabled: var(--color-neutral-03);
+    --color-checkbox-disabled-inner: var(--color-neutral-04);
+
+    // === Radio ===
+    --color-radio-bg: var(--color-neutral-03);
+    --color-radio-bd: var(--color-neutral-05);
+
+    // === Nav ===
+    --color-nav-default: var(--color-neutral-05);
+    --color-nav-current: var(--color-primary-03);
+    --color-nav-hover: var(--color-neutral-06);
+    --color-nav-active: var(--color-neutral-04);
+    --color-nav-bd: var(--color-neutral-03);
+
+    // === Form ===
+    --color-frm-txt: var(--color-neutral-05);
+    --color-frm-txt-muted: var(--color-neutral-04);
+
+    // === Modal ===
+    --color-modal-bg: var(--color-neutral-02);
+    --color-modal-backdrop: var(--color-overlay-neutral-light-10);
+    --color-modal-head-bd: var(--color-neutral-03);
+    --color-modal-head-tit: var(--color-neutral-05);
+    --color-modal-txt-cs: var(--color-neutral-08);
+
+    // === Toast ===
+    --color-toast-txt: var(--color-neutral-02);
+    --color-toast-bg: var(--color-neutral-08);
+    --color-toast-bd: var(--color-neutral-04);
+    --color-toast-icon: var(--color-neutral-05);
+    --color-toast-primary: var(--color-primary-03);
+    --color-toast-error: var(--color-error-03);
+
+    // === Group ===
+    @each $name,
+    $variant in mixins.$group-colors {
+        --color-group-#{$name}: #{map-get($variant, dark)};
+    }
+
+    // === Tasks ===
+    --color-task-bd: var(--color-overlay-neutral-light-10);
+    --color-task-badge: var(--color-neutral-05);
+    --color-task-subtask: var(--color-neutral-05);
+    --color-task-prg-bg: var(--color-overlay-status-progress-10);
+    --color-task-prg-bd: var(--color-status-progress-00);
+    --color-task-tmp-bg: var(--color-overlay-status-paused-10);
+    --color-task-tmp-bd: var(--color-status-paused-00);
+
+    // === Notes ===
+    @each $name,
+    $variant in mixins.$notes-colors {
+        --color-note-#{$name}: #{map-get($variant, dark)};
+    }
+
+    --color-note-mdl-txt: var(--color-neutal-01);
+    --color-note-mdl-bg: var(--color-overlay-neutral-10);
+    --color-note-mdl-bg-hover: var(--color-overlay-neutral-20);
+    --color-note-bg: var(--color-neutral-03);
+    --color-note-txt: var(--color-neutral-08);
+    --color-note-textarea-txt: var(--color-neutral-08);
+    --color-note-textarea-caret: var(--color-neutral-08);
+    --color-note-textarea-placeholder: var(--color-overlay-neutral-light-40);
+
+    // === Mini-calendar ===
+    --color-mn-cal-txt: var(--color-neutral-08);
+    --color-mn-cal-muted: var(--color-neutral-04);
+    --color-mn-cal-dimmed: var(--color-neutral-05);
+    --color-mn-cal-day-hover: var(--color-neutral-03);
+    --color-mn-cal-day-active: var(--color-neutral-04);
+    --color-mn-cal-day-current-txt: var(--color-neutral-08);
+    --color-mn-cal-day-current-bg: var(--color-primary-02);
+
+    // === Full calendar  ===
+    --color-fl-cal-weekday-label: var(--color-neutral-05);
+    --color-fl-cal-day-bg: var(--color-neutral-03);
+    --color-fl-cal-day-hover-bg: var(--color-overlay-neutral-light-20);
+    --color-fl-cal-day-active-bg: var(--color-overlay-neutral-light-30);
+    --color-fl-cal-day-dimmed-bg: var(--color-overlay-neutral-light-10);
+    --color-fl-cal-day-dimmed-text: var(--color-neutral-05);
+    --color-fl-cal-day-current-bg: var(--color-primary-01);
+    --color-fl-cal-day-current-text: var(--color-neutral-08);
+
+    // === Scrollbar ===
+    --color-scroll-thumb: var(--color-overlay-neutral-light-20);
+    --color-scroll-thumb-hover: var(--color-overlay-neutral-light-30);
+
+    // === Shadow ===
+    --shw-surface-default: 0px 0px 20px 0px var(--color-overlay-neutral-light-10);
+    --shw-modal-default: 0px 0px 20px -20px var(--color-overlay-neutral-light-10);
+    --shw-modal-primary: -4px 0 12px var(--color-overlay-neutral-light-10);
+    --shw-toast: 0 8px 24px var(--color-overlay-neutral-light-10);
+    --shw-checkbox-focus-ring: 0 0 0 3px var(--color-overlay-primary-40);
+}

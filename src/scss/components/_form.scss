@@ -1,0 +1,98 @@
+.form-field {
+    &__margin {
+        margin-block: 1.5rem;
+    }
+
+    &__full-width {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    &--mini-pomodoro {
+        background: var(--color-overlay-neutral-light-10) !important;
+        backdrop-filter: blur(2px);
+
+    }
+
+    &--transparent {
+        .form-field__header {
+            label {
+                color: var(--color-neutral-08);
+            }
+
+            .form-field__description {
+                color: var(--color-neutral-08);
+                opacity: 0.7;
+            }
+        }
+
+        .dropdown__toggle {
+            background: transparent !important;
+            color: var(--color-neutral-08);
+            border-radius: 0;
+            border: var(--br-layout-sm) var(--br-layout-sm) 0 0;
+            border-bottom: 2px solid;
+
+            &:hover {
+                background: var(--color-overlay-neutral-light-10) !important;
+            }
+        }
+
+        .dropdown__menu {
+            border-radius: 0;
+            background: var(--color-neutral-08);
+        }
+
+        .dropdown__option {
+            color: var(--color-neutral-04);
+
+            &:hover {
+                background: var(--color-neutral-07);
+            }
+        }
+
+        .dropdown__empty-btn {
+            --color-btn-txt: var(--color-neutral-08);
+            --color-btn-txt-hover: var(--color-neutral-08);
+            --color-btn-txt-active: var(--color-neutral-08);
+            --color-btn-bg: var(--color-overlay-neutral-light-10);
+            --color-btn-bg-hover: var(--color-overlay-neutral-light-20);
+            --color-btn-bg-active: var(--color-overlay-neutral-light-20);
+            --color-btn-bd: var(--color-overlay-neutral-light-30);
+            --color-btn-bd-hover: var(--color-overlay-neutral-light-30);
+            --color-btn-bd-active: var(--color-overlay-neutral-light-40);
+            border-style: dashed;
+        }
+    }
+
+    &__header {
+        margin-bottom: 0.5rem;
+
+        &.header-flex {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        &--button {
+            width: 35px !important;
+            height: 35px !important;
+            min-height: 35px !important;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            color: var(--color-frm-txt);
+        }
+
+        .form-field__description {
+            font-size: 0.85rem;
+            color: var(--color-frm-txt-muted);
+            line-height: 1.3;
+        }
+    }
+}

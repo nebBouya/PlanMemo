@@ -1,0 +1,274 @@
+@use '../themes/mixins';
+
+.overlay-modal {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay-modal);
+    display: flex;
+    pointer-events: none;
+
+    &__left {
+        .overlay-modal__panel {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .overlay-modal__header {
+            &--empty {
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    &__no_drop {
+        .overlay-modal__backdrop {
+            display: none;
+        }
+
+        &.overlay-modal--pomodoro {
+            .overlay-modal__panel {
+                background: var(--color-overlay-neutral-50);
+                backdrop-filter: blur(10px);
+            }
+
+            .overlay-modal__header {
+                border-color: var(--color-overlay-neutral-light-20);
+            }
+
+            .overlay-modal__title,
+            .overlay-modal__close {
+                color: var(--color-overlay-neutral-light-50);
+            }
+
+            .overlay-modal__close {
+
+                &:hover,
+                &:focus {
+                    color: var(--color-overlay-neutral-light-70) !important;
+                }
+            }
+        }
+    }
+
+    &--pomodoro {
+        z-index: var(--z-overall-timer-model) !important;
+
+        .overlay-modal__backdrop {
+            background-color: var(--color-overlay-neutral-30);
+        }
+
+        .overlay-modal__panel {
+            background: var(--color-neutral-true_black);
+            max-width: 600px !important;
+        }
+
+        .overlay-modal__nav {
+            @include mixins.neutral-light-scroll-bar;
+        }
+
+        .overlay-modal__header {
+            border: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .overlay-modal__title,
+        .overlay-modal__close {
+            color: var(--color-neutral-04);
+        }
+
+        .overlay-modal__close {
+
+            &:hover,
+            &:focus {
+                color: var(--color-neutral-05) !important;
+            }
+        }
+
+        .pomodoro-modal__content {
+            padding: 20px;
+        }
+    }
+
+    &__backdrop {
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(6px);
+        background-color: var(--color-modal-backdrop);
+        pointer-events: auto;
+        opacity: 0;
+        transition: var(--anim-fade-default);
+    }
+
+    &__panel {
+        z-index: 1;
+        margin-left: auto;
+        background: var(--color-modal-bg);
+        width: 100%;
+        max-width: 320px;
+        height: 100%;
+        box-shadow: var(--shw-modal-primary);
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        transform: translateX(100%);
+        transition: var(--anim-fade-default);
+
+        @media screen and (max-width: 450px) {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    &[data-animate-modal=true] {
+        .overlay-modal__backdrop {
+            opacity: 1;
+        }
+
+        .overlay-modal__panel {
+            transform: translateX(0);
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid var(--color-modal-head-bd);
+        margin-bottom: 15px;
+
+        &--empty {
+            justify-content: flex-start;
+        }
+    }
+
+    &__title {
+        color: var(--color-modal-head-tit);
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    &__nav {
+        overflow-y: auto;
+        height: 100%;
+        padding-bottom: 50px;
+        @include mixins.custom-scroll-bar;
+    }
+
+    &__close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+}
+
+.dialog {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: var(--color-modal-backdrop);
+        backdrop-filter: blur(4px);
+        z-index: -1;
+    }
+
+    &__window {
+        background: var(--color-modal-bg);
+        border-radius: var(--br-layout);
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        box-shadow: var(--shw-modal-default);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        &--note {
+            border-radius: 0;
+
+            .dialog__header {
+                border: none !important;
+                padding-bottom: 0;
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    height: 2em;
+                    width: 100%;
+                    background: linear-gradient(to top, transparent, var(--local-note-color));
+                    pointer-events: none;
+                }
+            }
+
+            .dialog__title {
+                color: var(--color-modal-txt-cs);
+            }
+
+
+            .dialog__footer {
+                border: none !important;
+                padding-top: 10px;
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 100%;
+                    left: 0;
+                    right: 0;
+                    height: 2em;
+                    width: 100%;
+                    background: linear-gradient(to bottom, transparent, var(--local-note-color));
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+
+    &__header {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        border-bottom: 1px solid var(--color-modal-head-bd);
+    }
+
+    &__title {
+        color: var(--color-modal-head-tit);
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    &__content {
+        padding: 20px;
+        overflow-y: auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-height: 200px;
+        @include mixins.custom-scroll-bar;
+    }
+
+    &__footer {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        padding: 20px;
+        border-top: 1px solid var(--color-modal-head-bd);
+    }
+}

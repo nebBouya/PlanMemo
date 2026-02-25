@@ -1,0 +1,153 @@
+@use "../themes/mixins";
+
+$padding: 20px;
+$gap-small: 0.25rem;
+$font-size-base: 0.9em;
+$font-size-small: 0.75rem;
+$radius-day: var(--br-day-btn);
+$radius-card: var(--br-layout-md);
+$color-text: var(--color-mn-cal-txt);
+$color-muted: var(--color-mn-cal-muted);
+$color-dimmed: var(--color-mn-cal-dimmed);
+$color-hover: var(--color-mn-cal-day-hover);
+$color-hover-active: var(--color-mn-cal-day-active);
+$color-primary-txt: var(--color-mn-cal-day-current-txt);
+$color-primary-bg: var(--color-mn-cal-day-current-bg);
+$bg-surface: var(--color-surface-primary);
+
+.calendar--mini {
+    font-family: inherit;
+    width: 100%;
+    background: $bg-surface;
+    border-radius: $radius-card;
+    padding: $padding;
+
+    &>* {
+        @include mixins.no-user-select;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .calendar--mini__title {
+            text-align: center;
+
+            p {
+                font-size: 1.2em;
+                margin-bottom: 5px;
+            }
+
+            span {
+                font-size: 0.9em;
+                opacity: 0.5;
+            }
+        }
+
+        .calendar--mini__nav {
+            background: none;
+            border: none;
+            color: $color-text;
+            font-size: 1rem;
+            padding: $gap-small $gap-small * 2;
+            box-shadow: var(--shw-toast);
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                opacity: 0.8;
+            }
+
+            &:active {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+
+        th {
+            font-size: $font-size-small;
+            font-weight: 600;
+            color: $color-muted;
+            padding: $gap-small 0;
+        }
+
+        td {
+            height: 48px;
+            vertical-align: top;
+            padding: $gap-small;
+        }
+    }
+
+    &__day {
+        position: relative;
+        font-size: $font-size-base;
+        color: $color-text;
+        border-radius: 0.375rem;
+        cursor: pointer;
+
+        .day-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            margin-bottom: 4px;
+            background: transparent;
+            border-radius: $radius-day;
+
+            @media screen and (max-width: 950px) {
+                aspect-ratio: 8 / 4;
+            }
+
+            @media screen and (max-width: 550px) {
+                aspect-ratio: 1 / 1;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            .day-number {
+                background: $color-hover;
+            }
+        }
+
+        &:active {
+            .day-number {
+                background: $color-hover-active;
+            }
+        }
+
+        &--current {
+            cursor: default !important;
+            color: $color-primary-txt !important;
+
+            .day-number {
+                font-weight: 500;
+                background: $color-primary-bg !important;
+            }
+        }
+
+        &--dimmed {
+            color: $color-dimmed;
+        }
+    }
+
+    &__dots {
+        display: flex;
+        justify-content: center;
+        gap: 2px;
+    }
+}

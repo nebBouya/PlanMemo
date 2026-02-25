@@ -1,0 +1,71 @@
+.ui-progress {
+    --bar: var(--color-overlay-neutral-light-10);
+    --active-bar: var(--color-overlay-neutral-light-60);
+    --holesize: 68%;
+    --progress: 0%;
+    --size: 35vmin;
+    --min-size: 100px;
+
+    &--bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--bar);
+    }
+
+    &--track {
+        height: 100%;
+        background: var(--active-bar);
+        border-radius: var(--br-layout-sm);
+        width: var(--progress);
+        transition: width 0.3s ease;
+    }
+
+    &--circular {
+
+        block-size: var(--size);
+        inline-size: var(--size);
+        min-inline-size: var(--min-size);
+        min-block-size: var(--min-size);
+        display: grid;
+        place-items: center;
+        position: relative;
+        font-weight: 500;
+        font-size: max(6vmin, 1rem);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 50%;
+            z-index: -1;
+            background: conic-gradient(var(--active-bar),
+                    var(--active-bar),
+                    var(--active-bar) var(--progress, 0%),
+                    var(--bar) var(--progress, 0%) 100%);
+
+            mask-image: radial-gradient(transparent var(--holesize),
+                    black calc(var(--holesize) + 0.5px));
+        }
+    }
+
+    &--danger {
+        --bar: var(--color-error-02);
+    }
+
+    &--label {
+        color: var(--color-neutral-08);
+        font-family: var(--font-stack-secondary);
+    }
+
+    &--sm {
+        --size: 12vmin;
+        --holesize: 63%;
+        font-size: max(2.5vmin, 1rem);
+    }
+}

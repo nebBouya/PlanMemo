@@ -1,0 +1,58 @@
+@use "themes/mixins";
+@use "themes/variables";
+@use "themes/light";
+@use "themes/dark";
+@use "themes/reset";
+@use "components/alerts";
+@use "components/buttons";
+@use "components/icons";
+@use "components/inputs";
+@use "components/modals";
+@use "components/checkbox";
+@use "components/radio";
+@use "components/select";
+@use "components/form";
+@use "components/progress";
+@use "components/slider";
+@use "layouts/sidebar";
+@use "layouts/header";
+@use "layouts/content";
+@use "layouts/not-found";
+@use "layouts/notification";
+@use "layouts/layout";
+@use "variants/dashboard";
+@use "variants/list";
+@use "variants/calendar";
+@use "variants/notes";
+@use "variants/group";
+
+body {
+    --layout-spacing: 60px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+    min-height: 100vh;
+    margin: var(--layout-spacing);
+
+    @media screen and (max-width: 950px) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main";
+    }
+
+    @media screen and (max-width: 900px) {
+        --layout-spacing: 40px;
+    }
+
+    @media screen and (max-width: 500px) {
+        --layout-spacing: 20px;
+    }
+}
+
+img {
+    outline: none;
+}

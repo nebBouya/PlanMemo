@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr" data-ui-state="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanMémo - Gestionnaire Personnel</title>
+    <meta name="description" content="Gérez vos tâches, notes et événements en un seul endroit avec PlanMémo.">
+    <meta name="keywords" content="planification, tâches, calendrier, notes, organisation">
+    <meta property="og:title" content="PlanMémo - Gestionnaire Personnel">
+    <meta property="og:description" content="Un outil pratique pour organiser vos tâches et événements efficacement.">
+    <meta property="og:image" content="/public/images/preview/dashboard.jpg">
+    <meta property="og:url" content="http://127.0.0.1:5500/">
+    <link rel="icon" href="/public/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/public/css/fonts.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/calendar.css">
+    <link rel="stylesheet" href="/public/css/pomodoro.css">
+    <link rel="stylesheet" href="/public/css/pomodoro-bg.css">
+    <script type="module" src="/src/main/index.js"></script>
+    <link rel="prefetch" href="/public/images/illustration/1x.png" as="image" type="image/png">
+    <link rel="prefetch" href="/public/images/illustration/2x.png" as="image" type="image/png">
+    <link rel="prefetch" href="/public/images/illustration/3x.png" as="image" type="image/png">
+</head>
+
+<body>
+    <header class="dashboard-header">
+        <section class="dashboard-header__logo">
+            <a href="/" class="dashboard-header__brand" aria-label="Homepage">
+                <img src="public/images/logo/light.svg" data-theme-img="public/images/logo/light.svg"
+                    data-theme-img-dark="public/images/logo/dark.svg" alt="PlanMémo">
+            </a>
+        </section>
+        <nav id="mobile_action--wrapper" class="dashboard-header__nav header-actions" aria-label="Dashboard actions">
+            <label class="dashboard-header__nav--input input input--compact" for="task-search" role="search"
+                aria-label="Rechercher une tâche">
+                <span class="input__content">
+                    <span class="input__group">
+                        <span class="input__icon button button--icon button--compact button--transparent button--static"
+                            role="presentation" aria-hidden="true">
+                            <i class="button__icon icon icon--search"></i>
+                        </span>
+                        <input id="task-search" type="search" class="input__field" placeholder="Rechercher une tâche..."
+                            aria-label="Rechercher une tâche" aria-describedby="task-search-help">
+                    </span>
+                    <button class="input__button input__icon button button--icon button--compact button--transparent"
+                        type="button" aria-label="Submit search">
+                        <i class="button__icon icon icon--send" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </label>
+
+            <section class="dashboard-header__nav--group">
+                <button data-header-action-type="resume" class="button button--compact" type="button"
+                    aria-label="Exporter le résumé">
+                    <span class="button__content">
+                        <span class="button__group">
+                            <i class="button__icon--left icon icon--file-download" aria-hidden="true"></i>
+                            <span class="button__label">Résumé</span>
+                        </span>
+                    </span>
+                </button>
+
+                <button data-header-action-type="pomodoro" class="button button--icon button--compact" type="button"
+                    aria-label="Lancer le minuteur Pomodoro">
+                    <i class="button__icon icon icon--clock" aria-hidden="true"></i>
+                </button>
+
+                <button data-header-action-type="settings" class="button button--icon button--compact" type="button"
+                    aria-label="Ouvrir les paramètres de l'application">
+                    <i class="button__icon icon icon--settings" aria-hidden="true"></i>
+                </button>
+            </section>
+
+            <button id="mobile_action--trigger"
+                class="dashboard-header__nav--mobile-trigger button button--icon button--compact" type="button"
+                aria-label="Ouvrir le menu principal">
+                <i class="button__icon icon icon--dots" aria-hidden="true"></i>
+            </button>
+
+            <section id="mobile_action--panel" class="dashboard-header__nav--mobile-actions visually-hidden">
+                <button data-header-action-type="resume" class="button button--compact" type="button"
+                    aria-label="Exporter le résumé">
+                    <span class="button__content">
+                        <span class="button__group">
+                            <i class="button__icon--left icon icon--file-download" aria-hidden="true"></i>
+                            <span class="button__label">Résumé</span>
+                        </span>
+                    </span>
+                </button>
+
+                <button data-header-action-type="pomodoro" class="button button--compact" type="button"
+                    aria-label="Lancer le minuteur Pomodoro">
+                    <span class="button__content">
+                        <span class="button__group">
+                            <i class="button__icon--left icon icon--clock" aria-hidden="true"></i>
+                            <span class="button__label">Minuteur Pomodoro</span>
+                        </span>
+                    </span>
+                </button>
+
+                <button data-header-action-type="settings" class="button button--compact" type="button"
+                    aria-label="Accéder aux paramètres de l'application">
+                    <span class="button__content">
+                        <span class="button__group">
+                            <i class="button__icon--left icon icon--settings" aria-hidden="true"></i>
+                            <span class="button__label">Paramètres</span>
+                        </span>
+                    </span>
+                </button>
+            </section>
+        </nav>
+    </header>
+
+    <aside class="sidebar" role="complementary" aria-label="Sidebar Navigation">
+        <nav class="main-navigation nav-tabs" aria-label="Main Navigation">
+            <ul role="tablist" class="nav-list nav-list--vertical">
+                <li role="presentation" role="tab" aria-selected="true" aria-controls="panel-dashboard"
+                    data-tab-type="view" data-tab-target="dashboard" id="tab-dashboard">
+                    <a href="?view=dashboard" class="nav-link">
+                        <i class="nav-link--icon icon icon--home" aria-hidden="true"></i>
+                        Tableau de bord
+                    </a>
+                </li>
+                <li role="presentation" role="tab" aria-selected="false" data-tab-type="view" data-tab-target="list"
+                    aria-controls="panel-list" id="tab-list">
+                    <a href="?view=list" class="nav-link">
+                        <i class="nav-link--icon icon icon--check" aria-hidden="true"></i>
+                        Liste
+                    </a>
+                </li>
+                <li role="presentation" role="tab" aria-selected="false" data-tab-type="view" data-tab-target="calendar"
+                    aria-controls="panel-calendar" id="tab-calendar">
+                    <a href="?view=calendar" class="nav-link">
+                        <i class="nav-link--icon icon icon--calendar" aria-hidden="true"></i>
+                        Calendrier
+                    </a>
+                </li>
+                <li role="presentation" role="tab" aria-selected="false" aria-controls="panel-notes"
+                    data-tab-type="view" data-tab-target="notes" id="tab-notes">
+                    <a href="?view=notes" class="nav-link">
+                        <i class="nav-link--icon icon icon--notes" aria-hidden="true"></i>
+                        Notes
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <section class="task-groups" aria-labelledby="heading-task-groups">
+            <header>
+                <h2 id="heading-task-groups">Mes tâches</h2>
+                <button class="nav-link nav-link--button button button--icon button--compact button--transparent"
+                    type="button" aria-label="Add" id="add__group">
+                    <i class="button__icon icon icon--add" aria-hidden="true"></i>
+                </button>
+            </header>
+
+            <nav id="main__nav-tab" class="nav-tabs" aria-label="Task Groups"></nav>
+        </section>
+    </aside>
+
+    <main class="content">
+        <section id="dashboard" class="tab-content dashboard visually-hidden" data-tab-panel="dashboard"
+            data-panel-type="view" aria-label="Tableau de bord principal">
+            <section class="dashboard__column dashboard__column--left">
+                <article id="dashboard__component--greeting" class="dashboard__column--card card--greeting"
+                    aria-labelledby="greeting-title">
+                    <picture class="card--greeting__decorative-image focus-illustration" aria-hidden="true">
+                        <source srcset="public/images/illustration/1x.png" media="(max-width: 960px)">
+                        <source srcset="public/images/illustration/2x.png"
+                            media="(min-width: 961px) and (max-width: 1440px)">
+                        <img src="public/images/illustration/3x.png" alt="" aria-hidden="true" />
+                    </picture>
+
+                    <header class="card--greeting__header" id="greeting__header">
+                        <h2 id="greeting-title" class="card--greeting__title">Bonjour, utilisateur</h2>
+                        <p class="greeting__desc"></p>
+                    </header>
+
+                    <section id="greeting__slot" class="card--greeting__upcoming" aria-labelledby="upcoming-title">
+                    </section>
+                </article>
+
+                <article class="dashboard__column--card card--quick-actions" aria-label="Actions rapides">
+                    <section class="card--quick-actions__form">
+                        <section class="form-field form-field__full-width" id="quick-task__form">
+                            <div class="form-field__header">
+                                <label for="quick-task">Ajouter une tâche rapide</label>
+                                <p class="form-field__description">Saisissez le titre de votre tâche rapide.</p>
+                            </div>
+
+                            <div class="input input--compact">
+                                <div class="input--stack">
+                                    <span class="input__content">
+                                        <span class="input__group">
+                                            <input id="quick-task" type="text" class="input__field"
+                                                placeholder="Ajouter une tâche rapide…" />
+                                        </span>
+                                        <button type="button"
+                                            class="input__button input__icon button button--icon button--compact button--transparent"
+                                            aria-label="Ajouter la tâche">
+                                            <i class="button__icon icon icon--add" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+
+                    <nav class="card--quick-actions__list" aria-label="Choisir l'horaire de la tâche"
+                        id="quick-task__date"></nav>
+                </article>
+
+                <article class="layout__list layout__list--tasks" id="layout_dash-tasks--component"></article>
+            </section>
+
+            <aside class="dashboard__column dashboard__column--right" aria-label="Outils complémentaires">
+                <section class="dashboard__column--card card--mini-calendar calendar calendar--mini"
+                    aria-label="Mini calendar view">
+                    <header class="calendar--mini__header">
+                        <button class="calendar--mini__nav" aria-label="Previous month">
+                            <i class="button--icon icon icon--chevron-left"></i>
+                        </button>
+                        <h2 class="calendar--mini__title" aria-live="polite"></h2>
+                        <button class="calendar--mini__nav" aria-label="Next month">
+                            <i class="button--icon icon icon--chevron-right"></i>
+                        </button>
+                    </header>
+                </section>
+
+
+                <article id="mini-pomodoro" class="dashboard__column--card card--mini-pomodoro"
+                    aria-label="Minuteur de concentration Pomodoro">
+                    <picture class="card--mini-pomodoro__decorative-image focus-illustration" aria-hidden="true">
+                        <source srcset="public/images/illustration/1x.png" media="(max-width: 960px)">
+                        <source srcset="public/images/illustration/2x.png"
+                            media="(min-width: 961px) and (max-width: 1440px)">
+                        <img src="public/images/illustration/3x.png" alt="" aria-hidden="true" />
+                    </picture>
+                </article>
+            </aside>
+        </section>
+
+        <section id="list" class="layout tab-content visually-hidden" data-tab-panel="list" data-panel-type="view">
+            <header class="tasks-header layout__header">
+                <div class="tasks-header__info layout__header--info">
+                    <h2>Mes Tâches</h2>
+                    <p class="tasks-header__subtitle">Consultez, modifiez ou ajoutez de nouvelles tâches.</p>
+                </div>
+                <div class="tasks-header__actions layout__header--actions">
+                    <button class="button button--compact button--icon" id="layout_tasks--trigger" type="button"
+                        aria-label="Ajouter une tâche">
+                        <span class="button__content">
+                            <span class="button__group">
+                                <i class="button__icon--left icon icon--add" aria-hidden="true"></i>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </header>
+            <article class="layout__list layout__list--tasks" id="layout_tasks--component"></article>
+        </section>
+
+
+        <section id="calendar" class="tab-content visually-hidden" data-tab-panel="calendar" data-panel-type="view">
+        </section>
+
+        <section id="notes" class="layout tab-content visually-hidden" data-tab-panel="notes" data-panel-type="view">
+            <header class="notes-header layout__header">
+                <div class="notes-header__info layout__header--info">
+                    <h2>Mes Notes</h2>
+                    <p class="notes-header__subtitle">Consultez, modifiez ou ajoutez de nouvelles notes.</p>
+                </div>
+                <div class="notes-header__actions layout__header--actions">
+                    <button class="button button--compact button--icon" id="layout_notes--trigger" type="button"
+                        aria-label="Ajouter une note">
+                        <span class="button__content">
+                            <span class="button__group">
+                                <i class="button__icon--left icon icon--add" aria-hidden="true"></i>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </header>
+            <article class="layout__list layout__list--note" id="layout_notes--component"></article>
+        </section>
+
+        <section id="group-task" class="layout tab-content visually-hidden" data-tab-panel="group"
+            data-panel-type="group">
+            <header class="tasks-header layout__header">
+                <div class="tasks-header__info layout__header--info">
+                    <h2 id="layout__header--group-title"></h2>
+                    <p class="tasks-header__subtitle">Consultez, modifiez ou ajoutez des tâches pour ce groupe.</p>
+                </div>
+                <div class="tasks-header__actions layout__header--actions">
+                    <button class="button button--compact button--icon" id="layout_group-tasks--trigger" type="button"
+                        aria-label="Ajouter une tâche">
+                        <span class="button__content">
+                            <span class="button__group">
+                                <i class="button__icon--left icon icon--add" aria-hidden="true"></i>
+                            </span>
+                        </span>
+                    </button>
+                    <button class="button button--compact button--icon" id="layout_edit-group--trigger" type="button"
+                        aria-label="Modifier le groupe du tâche">
+                        <span class="button__content">
+                            <span class="button__group">
+                                <i class="button__icon--left icon icon--edit" aria-hidden="true"></i>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </header>
+            <article class="layout__list layout__list--tasks" id="layout_group-tasks--component"></article>
+        </section>
+
+        <section id="404" data-panel-type="not-found" class="visually-hidden">
+            <section class="error error--404" role="alert" aria-labelledby="error-title">
+                <div class="error__container">
+                    <header class="error__header">
+                        <h1 id="error-title" class="error__code">Oups !</h1>
+                        <p class="error__message">404 – La page demandée est introuvable.</p>
+                    </header>
+                    <p>
+                        <a href="/?view=dashboard" class="button button--compact button--primary-outline" type="button"
+                            aria-label="Button Label">
+                            <span class="button__content">
+                                <span class="button__group">
+                                    <i class="button__icon--left icon icon--chevron-left" aria-hidden="true"></i>
+                                    <span class="button__label">Retour à l’accueil</span>
+                                </span>
+                            </span>
+                        </a>
+                    </p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Vue principale">
+        <ul class="nav-list nav-list--horizontal" role="tablist">
+            <li role="presentation" role="tab" aria-selected="true" aria-controls="panel-dashboard" data-tab-type="view"
+                data-tab-target="dashboard" id="tab-dashboard">
+                <a href="?view=dashboard" class="nav-link bottom-nav__link">
+                    <i class="bottom-nav__icon nav-link--icon icon icon--home" aria-hidden="true"></i>
+                    Accueil
+                </a>
+            </li>
+            <li role="presentation" role="tab" aria-selected="false" data-tab-type="view" data-tab-target="list"
+                aria-controls="panel-list" id="tab-list">
+                <a href="?view=list" class="nav-link bottom-nav__link">
+                    <i class="bottom-nav__icon nav-link--icon icon icon--check" aria-hidden="true"></i>
+                    Liste
+                </a>
+            </li>
+            <li role="presentation" role="tab" aria-selected="false" data-tab-type="view" data-tab-target="calendar"
+                aria-controls="panel-calendar" id="tab-calendar">
+                <a href="?view=calendar" class="nav-link bottom-nav__link">
+                    <i class="bottom-nav__icon nav-link--icon icon icon--calendar" aria-hidden="true"></i>
+                    Calendrier
+                </a>
+            </li>
+            <li role="presentation" role="tab" aria-selected="false" aria-controls="panel-notes" data-tab-type="view"
+                data-tab-target="notes" id="tab-notes">
+                <a href="?view=notes" class="nav-link bottom-nav__link">
+                    <i class="bottom-nav__icon nav-link--icon icon icon--notes" aria-hidden="true"></i>
+                    Notes
+                </a>
+            </li>
+            <li role="presentation">
+                <a id="group__modal" type="button" class="bottom-nav__link bottom-nav__link--modal-trigger" role="tab"
+                    aria-label="Afficher tous les groupes" aria-haspopup="dialog">
+                    <i class="bottom-nav__icon icon icon--menu" aria-hidden="true"></i>
+                    <span class="bottom-nav__label">Groupes</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+@use "../themes/mixins";
+
+.sidebar {
+    grid-area: sidebar;
+    margin-top: 30px;
+
+    @media screen and (max-width: 950px) {
+        display: none;
+    }
+
+    .nav-tabs {
+        background: var(--color-surface-primary);
+        padding: 20px 0;
+        border-radius: var(--br-layout);
+    }
+
+    .task-groups {
+        margin-top: 30px;
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 0 10px;
+
+            h2 {
+                font-size: 18px;
+                color: var(--color-surface-txt-default);
+            }
+        }
+    }
+}
+
+.bottom-nav {
+    --layout-spacing: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--color-surface-primary);
+    box-shadow: var(--shw-surface-default);
+    z-index: 20;
+    padding: 0 var(--layout-spacing);
+
+    @media screen and (min-width: 950px) {
+        display: none;
+    }
+
+    @media screen and (max-width: 500px) {
+        --layout-spacing: 20px;
+    }
+}
+
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        --color-link: var(--color-nav-default);
+        box-sizing: border-box;
+        background: transparent;
+
+        a {
+            transition: var(--anim-link-color);
+            @include mixins.no-user-select;
+
+            &.nav-link--empty {
+                color: var(--color-nav-default) !important;
+                line-height: 1.2;
+            }
+        }
+
+        .group-color {
+            margin-left: auto;
+        }
+
+        &.current-tab {
+            --color-link: var(--color-nav-current);
+        }
+
+        &:not(.current-tab) {
+
+            &:hover,
+            &:has(a:hover),
+            &:focus,
+            &:has(a:focus) {
+                --color-link: var(--color-nav-hover);
+            }
+
+            &:active,
+            &:has(a:active) {
+                --color-link: var(--color-nav-active);
+            }
+        }
+    }
+
+    &--vertical {
+        li {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: var(--color-link);
+                text-decoration: none;
+                font-size: 18px;
+                padding: 10px 30px;
+                width: 100%;
+            }
+        }
+    }
+
+    &--horizontal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        li {
+            &:not(:last-child) {
+                border-right: 1px solid var(--color-nav-bd);
+            }
+
+            .bottom-nav__link {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: transparent;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 12px 18px;
+                gap: 3px;
+                color: var(--color-link);
+                cursor: pointer;
+                @include mixins.no-user-select;
+
+                .bottom-nav__icon {
+                    font-size: 23px;
+                }
+
+                @media screen and (max-width: 550px) {
+                    padding: 18px;
+
+                    .bottom-nav__label {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
